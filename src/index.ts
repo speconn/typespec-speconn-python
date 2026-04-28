@@ -319,8 +319,8 @@ function emitPython(program: Program, services: ServiceInfo[], outputDir: string
     server.push("from __future__ import annotations");
     server.push("from speconn import SpeconnRouter, SpeconnContext");
     server.push(`from ${importBase} import *\n`);
-    server.push(`def create_router(service) -> SpeconnRouter:`);
-    server.push(`    router = SpeconnRouter()`);
+    server.push(`def create_router(service, interceptors=None) -> SpeconnRouter:`);
+    server.push(`    router = SpeconnRouter(interceptors=interceptors)`);
     for (const rpc of svc.rpcs) {
       const inputName = rpc.inputType?.name || "dict";
       const outputName = rpc.outputType?.name || "dict";
